@@ -5,17 +5,18 @@ using UnityEngine;
 public class TrapDoor : MonoBehaviour
 {
     public int doorNumber;
+    protected bool isOpen;
 
     private void OnDisable()
     {
-        // EventSystem.onButtonPress.RemoveListener(OpenTrapDoor);
-        // EventSystem.onButtonRelease.RemoveListener(CloseTrapDoor);
+        EventManager.onButtonPress.RemoveListener(OpenTrapDoor);
+        EventManager.onButtonRelease.RemoveListener(CloseTrapDoor);
     }
 
     private void OnEnable()
     {
-        // EventSystem.onButtonPress.AddListener(OpenTrapDoor);
-        // EventSystem.onButtonRelease.AddListener(CloseTrapDoor);
+        EventManager.onButtonPress.AddListener(OpenTrapDoor);
+        EventManager.onButtonRelease.AddListener(CloseTrapDoor);
     }
 
 
@@ -23,26 +24,14 @@ public class TrapDoor : MonoBehaviour
     {
         if (this.doorNumber == doorNumber)
         {
-            StopCoroutine(CloseTrapDoorSequence());
-            StartCoroutine(OpenTrapDoorSequence());
+            isOpen = true;
         }
     }
     void CloseTrapDoor(int doorNumber)
     {
         if (this.doorNumber == doorNumber)
         {
-            StopCoroutine(OpenTrapDoorSequence());
-            StartCoroutine(CloseTrapDoorSequence());
+            isOpen = false;
         }
-    }
-
-    protected virtual IEnumerator OpenTrapDoorSequence()
-    {
-        yield return null;
-    }
-
-    protected virtual IEnumerator CloseTrapDoorSequence()
-    {
-        yield return null;
     }
 }

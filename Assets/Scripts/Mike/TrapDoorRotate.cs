@@ -14,51 +14,16 @@ public class TrapDoorRotate : TrapDoor
         startRotation = transform.eulerAngles.z;
     }
 
-    public void Open()
+    private void Update()
     {
-        StartCoroutine(OpenTrapDoorSequence());
-    }
-
-    public void Close()
-    {
-        StartCoroutine(CloseTrapDoorSequence());
-    }
-
-    protected override IEnumerator OpenTrapDoorSequence()
-    {
-        bool hasFinished = false;
-        while (!hasFinished)
+        float wantedRotation = isOpen ? startRotation + rotation : startRotation;
+        if (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, wantedRotation)) > speed * Time.deltaTime)
         {
-            if (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, startRotation + rotation)) > speed * Time.deltaTime)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, transform.eulerAngles.z + (turnsLeft ? 1 : -1) * speed * Time.deltaTime);
-            }
-            else
-            {
-                transform.rotation = Quaternion.Euler(0, 0, startRotation + rotation);
-                hasFinished = true;
-            }
-
-            yield return null;
+            transform.rotation = Quaternion.Euler(0, 0, transform.eulerAngles.z + ((isOpen ? 1f : -1f) * (turnsLeft ? 1f : -1f) * speed * Time.deltaTime));
         }
-    }
-
-    protected override IEnumerator CloseTrapDoorSequence()
-    {
-        bool hasFinished = false;
-        while (!hasFinished)
+        else
         {
-            if (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, startRotation - rotation)) > speed * Time.deltaTime)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, transform.eulerAngles.z - (turnsLeft ? 1 : -1) * speed * Time.deltaTime);
-            }
-            else
-            {
-                transform.rotation = Quaternion.Euler(0, 0, startRotation - rotation);
-                hasFinished = true;
-            }
-
-            yield return null;
+            transform.rotation = Quaternion.Euler(0, 0, wantedRotation);
         }
     }
 }
