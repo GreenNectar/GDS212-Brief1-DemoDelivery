@@ -15,6 +15,9 @@ TagManager:
   - Background
   - Player
   - Bomb
+  - IgnoreExplosions
+  - 
+  - 
   - 
   - 
   - 
@@ -38,6 +41,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background1
+    uniqueID: 3646354769
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
