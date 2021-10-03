@@ -13,8 +13,8 @@ TagManager:
   - UI
   - Map
   - Background
-  - 
-  - 
+  - Player
+  - Bomb
   - 
   - 
   - 
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bomb
+    uniqueID: 2403855525
     locked: 0

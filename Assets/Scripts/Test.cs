@@ -16,21 +16,25 @@ namespace DemoDelivery.Testing
         [SerializeField]
         private float radius = 2f;
 
-        private int currentTap = 0;
-
         InputManager inputManager;
 
         private void OnEnable()
         {
-            inputManager = InputManager.Instance;
             inputManager.onStartTouch.AddListener(Explode);
+        }
+
+        private void OnDisable()
+        {
+            inputManager.onStartTouch.RemoveListener(Explode);
+        }
+
+        private void Awake()
+        {
+            inputManager = InputManager.Instance;
         }
 
         public void Explode(Vector2 position)
         {
-            currentTap++;
-            Debug.Log($"Taps {currentTap}");
-
             Explosion.Explode(position, radius, power, torquePower);
         }
     }
