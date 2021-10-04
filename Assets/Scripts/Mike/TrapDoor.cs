@@ -2,36 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapDoor : MonoBehaviour
+// Written by Michael, edited by Jarrad
+
+namespace DemoDelivery.Gameplay
 {
-    public int doorNumber;
-    protected bool isOpen;
-
-    private void OnDisable()
+    public class TrapDoor : MonoBehaviour
     {
-        EventManager.onButtonPress.RemoveListener(OpenTrapDoor);
-        EventManager.onButtonRelease.RemoveListener(CloseTrapDoor);
-    }
+        [SerializeField]
+        private int doorNumber;
+        protected bool isOpen;
 
-    private void OnEnable()
-    {
-        EventManager.onButtonPress.AddListener(OpenTrapDoor);
-        EventManager.onButtonRelease.AddListener(CloseTrapDoor);
-    }
-
-
-    void OpenTrapDoor(int doorNumber)
-    {
-        if (this.doorNumber == doorNumber)
+        private void OnDisable()
         {
-            isOpen = true;
+            EventManager.onButtonPress.RemoveListener(OpenTrapDoor);
+            EventManager.onButtonRelease.RemoveListener(CloseTrapDoor);
         }
-    }
-    void CloseTrapDoor(int doorNumber)
-    {
-        if (this.doorNumber == doorNumber)
+
+        private void OnEnable()
         {
-            isOpen = false;
+            EventManager.onButtonPress.AddListener(OpenTrapDoor);
+            EventManager.onButtonRelease.AddListener(CloseTrapDoor);
+        }
+
+
+        void OpenTrapDoor(int doorNumber)
+        {
+            if (this.doorNumber == doorNumber)
+            {
+                isOpen = true;
+            }
+        }
+
+        void CloseTrapDoor(int doorNumber)
+        {
+            if (this.doorNumber == doorNumber)
+            {
+                isOpen = false;
+            }
         }
     }
 }

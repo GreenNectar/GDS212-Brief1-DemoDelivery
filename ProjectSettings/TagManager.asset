@@ -37,9 +37,6 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
   m_SortingLayers:
   - name: Background1
     uniqueID: 3646354769
@@ -49,4 +46,7 @@ TagManager:
     locked: 0
   - name: Bomb
     uniqueID: 2403855525
+    locked: 0
+  - name: Text
+    uniqueID: 3347345939
     locked: 0

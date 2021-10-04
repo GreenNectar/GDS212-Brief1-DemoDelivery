@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+// Created by Jarrad
+
 namespace DemoDelivery.Gameplay
 {
     public class PlacementController : MonoBehaviour
@@ -22,12 +24,16 @@ namespace DemoDelivery.Gameplay
         {
             inputManager.onStartTouch.AddListener(StartPlacement);
             inputManager.onEndTouch.AddListener(EndPlacement);
+
+            EventManager.onChangeExplosive.AddListener(ChangeSelectedExplosive);
         }
 
         private void OnDisable()
         {
             inputManager.onStartTouch.RemoveListener(StartPlacement);
             inputManager.onEndTouch.RemoveListener(EndPlacement);
+
+            EventManager.onChangeExplosive.RemoveListener(ChangeSelectedExplosive);
         }
 
         private void Awake()
@@ -80,6 +86,8 @@ namespace DemoDelivery.Gameplay
         /// <param name="position">Where to create/grab in world position</param>
         private void StartPlacement(Vector2 position)
         {
+            if (GameManager.Instance.CurrentState != GameManager.GameState.Setup) return;
+
             // If we are still placing an explosive, we don't want to do anything below
             if (placingExplosive != null) return;
 
@@ -104,7 +112,7 @@ namespace DemoDelivery.Gameplay
             if (placingExplosive == null)
             {
                 placingExplosive = Instantiate(currentSelectedExplosive, position, Quaternion.identity);
-                GameManager.Instance.AddExplosive(placingExplosive);
+                LevelManager.current.AddExplosive(placingExplosive);
             }
 
             // Store the explosives material, this is so we can switch between the overlay and the original
@@ -128,7 +136,7 @@ namespace DemoDelivery.Gameplay
                 }
                 else
                 {
-                    GameManager.Instance.RemoveExplosive(placingExplosive);
+                    LevelManager.current.RemoveExplosive(placingExplosive);
                     Destroy(placingExplosive.gameObject);
                 }
                 placingExplosive = null;

@@ -2,40 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : MonoBehaviour
+// Written by Michael, edited by Jarrad
+
+namespace DemoDelivery.Gameplay
 {
-    private float startDistance;
-    private bool isPressed = false;
-    public Rigidbody2D parent;
-    public int doorNumber;
-
-    private void Start()
+    public class Button : MonoBehaviour
     {
-        startDistance = Vector2.Distance(transform.position, parent.position);
-    }
+        [SerializeField]
+        private Rigidbody2D parent;
+        [SerializeField]
+        private int doorNumber;
 
-    private void Update()
-    {
-        if (!isPressed)
+        private float startDistance;
+        private bool isPressed = false;
+
+        private void Start()
         {
-            if (Vector2.Distance(transform.position, parent.position) <= 0.5f * startDistance)
+            startDistance = Vector2.Distance(transform.position, parent.position);
+        }
+
+        private void Update()
+        {
+            if (!isPressed)
             {
-                isPressed = true;
-                EventManager.onButtonPress.Invoke(doorNumber);
+                // If the button is halfway pressed down, we are pressed
+                if (Vector2.Distance(transform.position, parent.position) <= 0.5f * startDistance)
+                {
+                    isPressed = true;
+                    EventManager.onButtonPress.Invoke(doorNumber);
+                }
+            }
+            else
+            {
+                // If the button is more than halfway unpressed, we are unpressed
+                if (Vector2.Distance(transform.position, parent.position) > 0.5f * startDistance)
+                {
+                    isPressed = false;
+                    EventManager.onButtonRelease.Invoke(doorNumber);
+                }
             }
 
         }
-        else
-        {
-            if (Vector2.Distance(transform.position, parent.position) > 0.5f * startDistance)
-            {
-                isPressed = false;
-                EventManager.onButtonRelease.Invoke(doorNumber);
-            }
-        }
-        
     }
-
-
-
 }

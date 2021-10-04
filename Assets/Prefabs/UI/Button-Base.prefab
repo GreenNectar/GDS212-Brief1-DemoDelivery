@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5841799523207340320}
   - component: {fileID: 5841799523207340325}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button-Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,7 +104,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 47d3fb1bbb2754049afceedf1849e2ff, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ebbf387f9e55132428828e52c026719f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 60dacdecb3f7f4d44948de61cdb17459, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
