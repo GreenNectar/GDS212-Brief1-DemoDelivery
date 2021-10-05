@@ -269,9 +269,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285ba25ac3eb65e4cb92d2be3ea41d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 8
-  power: 25
-  torque: 10
+  radius: 5
+  power: 10
+  torque: 5
   bombNumber: {fileID: 261918400393384208}
   bomb: {fileID: 6092120815905311523}
 --- !u!61 &2092310067400871467
