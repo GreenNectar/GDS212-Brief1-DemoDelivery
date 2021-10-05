@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Created by Jarrad
+
 public class Singleton<T> : MonoBehaviour where T : Component
 {
     [SerializeField]

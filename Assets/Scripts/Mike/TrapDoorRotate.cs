@@ -2,35 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapDoorRotate : TrapDoor
+// Written by Michael, edited by Jarrad
+
+namespace DemoDelivery.Gameplay
 {
-    private float startRotation;
-    public float rotation;
-    public bool turnsLeft;
-    public float speed;
-
-    private void Start()
+    public class TrapDoorRotate : TrapDoor
     {
-        // setting the starting rotation to startRotation
-        startRotation = transform.eulerAngles.z;
-    }
+        private float startRotation;
+        public float rotation;
+        public bool turnsLeft;
+        public float speed;
 
-    private void Update()
-    {
-        // the desired rotation equals if isOpen is true startRotation plus number given for rotation
-        float wantedRotation = isOpen ? startRotation + rotation : startRotation;
-
-        // absolute number (no negatives) the difference between the current angle on the z axis compared to the wanted angle
-        // if it is greater (unsure at this point need clarification)
-        if (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, wantedRotation)) > speed * Time.deltaTime)
+        private void Start()
         {
-            // the rotation equals the z axis for rotation adding if it is still considered open 1f or -1f depending (possibly to make it stop need clarification)
-            transform.rotation = Quaternion.Euler(0, 0, transform.eulerAngles.z + ((isOpen ? 1f : -1f) * (turnsLeft ? 1f : -1f) * speed * Time.deltaTime));
+            // setting the starting rotation to startRotation
+            startRotation = transform.eulerAngles.z;
         }
-        else
+
+        private void Update()
         {
-            // sets the transform rotation to the wanted angle
-            transform.rotation = Quaternion.Euler(0, 0, wantedRotation);
+            // the desired rotation equals if isOpen is true startRotation plus number given for rotation
+            float wantedRotation = isOpen ? startRotation + rotation : startRotation;
+
+            // absolute number (no negatives) the difference between the current angle on the z axis compared to the wanted angle
+            // if it is greater (unsure at this point need clarification)
+            if (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, wantedRotation)) > speed * Time.deltaTime)
+            {
+                // the rotation equals the z axis for rotation adding if it is still considered open 1f or -1f depending (possibly to make it stop need clarification)
+                transform.rotation = Quaternion.Euler(0, 0, transform.eulerAngles.z + ((isOpen ? 1f : -1f) * (turnsLeft ? 1f : -1f) * speed * Time.deltaTime));
+            }
+            else
+            {
+                // sets the transform rotation to the wanted angle
+                transform.rotation = Quaternion.Euler(0, 0, wantedRotation);
+            }
         }
     }
 }

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Jarrad/Jarrad-TestingScene.unity
     guid: c937fdf82a01a804399c03b8a15e822e
+  - enabled: 1
+    path: Assets/Scenes/Jarrad/UI-Level.unity
+    guid: 9e171fc3f55612a42a8b60bb02b79ec1
   m_configObjects: {}

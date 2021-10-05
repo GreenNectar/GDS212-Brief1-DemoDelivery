@@ -52,5 +52,15 @@ namespace DemoDelivery.Input
                 onEndTouch.Invoke(worldpos);
             }
         }
+
+        public Vector2 GetWorldPosition()
+        {
+            return Camera.main.ScreenToWorldPoint(touchControls.Touch.TouchPosition.ReadValue<Vector2>());
+        }
+
+        public Vector2 GetScreenPosition()
+        {
+            return touchControls.Touch.TouchPosition.ReadValue<Vector2>();
+        }
     }
 }

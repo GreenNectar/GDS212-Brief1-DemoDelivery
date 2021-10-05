@@ -13,9 +13,9 @@ TagManager:
   - UI
   - Map
   - Background
+  - Player
+  - Bomb
   - IgnoreExplosions
-  - 
-  - 
   - 
   - 
   - 
@@ -43,4 +43,10 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bomb
+    uniqueID: 2403855525
+    locked: 0
+  - name: Text
+    uniqueID: 3347345939
     locked: 0
