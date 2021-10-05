@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 using static UnityEngine.InputSystem.InputAction;
 
 namespace DemoDelivery.Input
@@ -13,10 +14,14 @@ namespace DemoDelivery.Input
 
         public UnityEvent<Vector2> onStartTouch;
         public UnityEvent<Vector2> onEndTouch;
+        public UnityEvent<Vector2> onStartSecondTouch;
+        public UnityEvent<Vector2> onEndSecondTouch;
 
         private void Awake()
         {
             touchControls = new TouchControls();
+
+            EnhancedTouchSupport.Enable();
         }
 
         private void OnEnable()
@@ -31,8 +36,10 @@ namespace DemoDelivery.Input
 
         private void Start()
         {
-            touchControls.Touch.TouchPress.started += ctx => StartTouch(ctx);
-            touchControls.Touch.TouchPress.canceled += ctx => EndTouch(ctx);
+            touchControls.Touch.TouchPress.started += StartTouch;
+            touchControls.Touch.TouchPress.canceled += EndTouch;
+            touchControls.Touch.SecondTouch.started += StartSecondTouch;
+            touchControls.Touch.SecondTouch.canceled += EndSecondTouch;
         }
 
         private void StartTouch(CallbackContext context)
@@ -61,6 +68,34 @@ namespace DemoDelivery.Input
         public Vector2 GetScreenPosition()
         {
             return touchControls.Touch.TouchPosition.ReadValue<Vector2>();
+        }
+
+        private void StartSecondTouch(CallbackContext context)
+        {
+            if (onStartSecondTouch != null)
+            {
+                Vector2 worldpos = Camera.main.ScreenToWorldPoint(touchControls.Touch.SecondTouchPosition.ReadValue<Vector2>());
+                onStartSecondTouch.Invoke(worldpos);
+            }
+        }
+
+        private void EndSecondTouch(CallbackContext context)
+        {
+            if (onEndSecondTouch != null)
+            {
+                Vector2 worldpos = Camera.main.ScreenToWorldPoint(touchControls.Touch.SecondTouchPosition.ReadValue<Vector2>());
+                onEndSecondTouch.Invoke(worldpos);
+            }
+        }
+
+        public Vector2 GetSecondWorldPosition()
+        {
+            return Camera.main.ScreenToWorldPoint(touchControls.Touch.SecondTouchPosition.ReadValue<Vector2>());
+        }
+
+        public Vector2 GetSecondScreenPosition()
+        {
+            return touchControls.Touch.SecondTouchPosition.ReadValue<Vector2>();
         }
     }
 }

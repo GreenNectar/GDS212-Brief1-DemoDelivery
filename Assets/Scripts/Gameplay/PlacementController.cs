@@ -26,6 +26,7 @@ namespace DemoDelivery.Gameplay
             inputManager.onEndTouch.AddListener(EndPlacement);
 
             EventManager.onChangeExplosive.AddListener(ChangeSelectedExplosive);
+            EventManager.onDestroyPlacingExplosive.AddListener(StopPlacement);
         }
 
         private void OnDisable()
@@ -34,6 +35,7 @@ namespace DemoDelivery.Gameplay
             inputManager.onEndTouch.RemoveListener(EndPlacement);
 
             EventManager.onChangeExplosive.RemoveListener(ChangeSelectedExplosive);
+            EventManager.onDestroyPlacingExplosive.AddListener(StopPlacement);
         }
 
         private void Awake()
@@ -148,6 +150,7 @@ namespace DemoDelivery.Gameplay
         /// </summary>
         private void StopPlacement()
         {
+            LevelManager.current.RemoveExplosive(placingExplosive);
             Destroy(placingExplosive.gameObject);
             placingExplosive = null;
         }
