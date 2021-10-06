@@ -16,11 +16,18 @@ namespace DemoDelivery.Gameplay
         [SerializeField]
         private string UISceneName;
 
+        [Header("Level Values")]
+        [SerializeField]
+        private int maximumExplosives = 3;
+
+        // Other stuff bb
         public static LevelManager current { get; private set; }
-
-
         private List<Explosive> explosives = new List<Explosive>();
-
+        private bool canExplodeBombs;
+        public bool CanCreateExplosive => explosives.Count < maximumExplosives;
+        public int RemainingExplosives => maximumExplosives - explosives.Count;
+        public int ExplosivesUsed => explosives.Count;
+        public int MaximumExplosives => maximumExplosives;
 
         private void OnEnable()
         {
@@ -45,10 +52,10 @@ namespace DemoDelivery.Gameplay
 
         private void Start()
         {
-            if (SceneManager.GetSceneByName(UISceneName) == null)
-            {
+            ////if (SceneManager.GetSceneByName(UISceneName) == null)
+            ////{
                 SceneManager.LoadScene(UISceneName, LoadSceneMode.Additive);
-            }
+            ////}
 
             SetupRigidbodies();
         }
@@ -57,6 +64,19 @@ namespace DemoDelivery.Gameplay
         {
             ResetRigidbodies();
             ResetExplosives();
+            StartCoroutine(SafeTime());
+        }
+
+        /// <summary>
+        /// This is to stop the explosive going off when we press play
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator SafeTime()
+        {
+            canExplodeBombs = false;
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForEndOfFrame();
+            canExplodeBombs = true;
         }
 
         #region Consecutive Explosions / Gameplay
@@ -64,7 +84,7 @@ namespace DemoDelivery.Gameplay
         int currentExplosive = 0;
         private void ExplodeNextBomb(Vector2 position)
         {
-            if (GameManager.Instance.CurrentState == GameManager.GameState.Play)
+            if (GameManager.Instance.CurrentState == GameManager.GameState.Play && canExplodeBombs)
             {
                 if (currentExplosive < explosives.Count)
                 {
@@ -93,12 +113,16 @@ namespace DemoDelivery.Gameplay
         {
             explosive.SetBombNumber(explosives.Count + 1);
             explosives.Add(explosive);
+
+            EventManager.onExplosivesAddedorRemoved.Invoke();
         }
 
         public void RemoveExplosive(Explosive explosive)
         {
             explosives.Remove(explosive);
             SetAllExplosiveNumbers();
+
+            EventManager.onExplosivesAddedorRemoved.Invoke();
         }
 
         private void SetAllExplosiveNumbers()
@@ -142,6 +166,9 @@ namespace DemoDelivery.Gameplay
             {
                 rigidBodies[i].transform.position = rigidBodyStartingPositions[i];
                 rigidBodies[i].transform.rotation = rigidBodyStartingRotations[i];
+
+                rigidBodies[i].velocity = Vector2.zero;
+                rigidBodies[i].angularVelocity = 0f;
             }
         }
 

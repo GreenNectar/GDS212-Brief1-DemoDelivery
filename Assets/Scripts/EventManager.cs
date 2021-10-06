@@ -16,6 +16,9 @@ namespace DemoDelivery
         public static UnityEvent onTogglePlay = new UnityEvent();
 
         public static UnityEvent onDestroyAllExplosives = new UnityEvent();
-        public static UnityEvent<Explosive> onChangeExplosive = new UnityEvent<Explosive>();
+        public static UnityEvent onDestroyPlacingExplosive = new UnityEvent();
+        public static UnityEvent onExplosivesAddedorRemoved = new UnityEvent();
+
+        public static UnityEvent onPlayFinish = new UnityEvent();
     }
 }

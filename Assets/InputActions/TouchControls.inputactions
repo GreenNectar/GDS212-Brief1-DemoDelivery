@@ -1,5 +1,5 @@
 {
-    "name": "Base",
+    "name": "TouchControls",
     "maps": [
         {
             "name": "Touch",
@@ -25,6 +25,22 @@
                     "name": "TouchPosition",
                     "type": "PassThrough",
                     "id": "0eb71ae4-5838-46cc-beef-aa40ad68a480",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SecondTouch",
+                    "type": "Button",
+                    "id": "849db13a-220c-4472-9a5a-7edf95c79b57",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "SecondTouchPosition",
+                    "type": "PassThrough",
+                    "id": "648abb75-24c5-468b-9140-9c303e72658f",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
@@ -61,6 +77,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "TouchPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9d500810-cbb3-4c71-908a-54f5ae05b201",
+                    "path": "<Touchscreen>/touch1/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondTouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c4eee615-d2ff-4b27-8b06-7d7231321e0e",
+                    "path": "<Touchscreen>/touch1/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondTouchPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

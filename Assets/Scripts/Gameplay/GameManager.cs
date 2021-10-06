@@ -14,11 +14,13 @@ namespace DemoDelivery
         private void OnEnable()
         {
             EventManager.onTogglePlay.AddListener(TogglePlayState);
+            EventManager.onPlayFinish.AddListener(FinishLevel);
         }
 
         private void OnDisable()
         {
             EventManager.onTogglePlay.RemoveListener(TogglePlayState);
+            EventManager.onPlayFinish.RemoveListener(FinishLevel);
         }
 
         private void Start()
@@ -47,6 +49,13 @@ namespace DemoDelivery
             {
                 Time.timeScale = 0f;
             }
+        }
+
+        private void FinishLevel()
+        {
+            CurrentState = GameState.End;
+
+            SetTimeScale();
         }
     }
 }
