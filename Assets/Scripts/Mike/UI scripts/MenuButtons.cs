@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Created by Michael
+
 public class MenuButtons : MonoBehaviour
 {
     // Update is called once per frame

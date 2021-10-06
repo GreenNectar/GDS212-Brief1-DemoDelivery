@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Created by Jarrad
+
 namespace DemoDelivery.Gameplay
 {
     [RequireComponent(typeof(Camera))]
@@ -78,8 +80,14 @@ namespace DemoDelivery.Gameplay
 
                     // Scale (the best I could get it :/)
                     float distance = Vector2.Distance(currentTouchFirst, currentTouchSecond);
-                    float delta = startingTouchDistance - distance;
 
+                    // Change the starting touch distance so we can scale down instantly after we go way past the zoom level
+                    float clampedDistance = Mathf.Clamp(distance, startingTouchDistance / maximumZoom, startingTouchDistance * maximumZoom);
+                    float sizeDifference = distance - clampedDistance;
+                    startingTouchDistance += sizeDifference;
+
+                    // Half the finger distance means half the scale (inverse)
+                    float delta = startingTouchDistance - distance;
                     float newSize = startingZoom * (1f + (delta / startingTouchDistance));
 
                     camera.orthographicSize = Mathf.Clamp(newSize, initialSize / maximumZoom, initialSize);
@@ -93,7 +101,7 @@ namespace DemoDelivery.Gameplay
 
                     Vector3 newPosition = startingPosition + (difference * translationSensitivity) * camera.orthographicSize;
 
-
+                    // Get the world position difference of zoomed from normal and use that as the extents that the camera can translate
                     float vertExtent = camera.orthographicSize;
                     float horzExtent = vertExtent * Screen.width / Screen.height;
 
@@ -102,15 +110,6 @@ namespace DemoDelivery.Gameplay
 
                     newPosition.x = Mathf.Clamp(newPosition.x, initialPosition.x - horzDiff, initialPosition.x + horzDiff);
                     newPosition.y = Mathf.Clamp(newPosition.y, initialPosition.y - vertDiff, initialPosition.y + vertDiff);
-
-                    //float width = Screen.width / 2f;
-                    //newPosition.x = Mathf.Clamp(newPosition.x, initialPosition.x - width, initialPosition.x + width);
-                    //float height = Screen.height / 2f;
-                    //newPosition.x = Mathf.Clamp(newPosition.x, initialPosition.x - width, initialPosition.x + width);
-
-
-
-
 
                     camera.transform.position = newPosition;
                 }
@@ -124,7 +123,7 @@ namespace DemoDelivery.Gameplay
 
         private void ResetCamera()
         {
-            //StopCoroutine(ResetCameraSequence());
+            StopCoroutine(ResetCameraSequence());
             StartCoroutine(ResetCameraSequence());
         }
 
@@ -140,8 +139,6 @@ namespace DemoDelivery.Gameplay
 
                 camera.transform.position = Vector3.Lerp(startingPosition, initialPosition, time);
                 camera.orthographicSize = Mathf.Lerp(startingSize, initialSize, time);
-
-                Debug.Log("Is here");
 
                 yield return null;
             }

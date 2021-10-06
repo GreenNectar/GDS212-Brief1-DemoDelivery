@@ -6,6 +6,13 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using static UnityEngine.InputSystem.InputAction;
 
+// Created by Jarrad
+
+// Reference
+// Samyam [YouTube]
+// How to use Touch with NEW Input System - Unity Tutorial
+// https://www.youtube.com/watch?v=ERAN5KBy2Gs&ab_channel=samyam
+
 namespace DemoDelivery.Input
 {
     public class InputManager : Singleton<InputManager>

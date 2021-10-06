@@ -25,7 +25,7 @@ namespace DemoDelivery.Gameplay
             inputManager.onStartTouch.AddListener(StartPlacement);
             inputManager.onEndTouch.AddListener(EndPlacement);
 
-            EventManager.onChangeExplosive.AddListener(ChangeSelectedExplosive);
+            //EventManager.onChangeExplosive.AddListener(ChangeSelectedExplosive);
             EventManager.onDestroyPlacingExplosive.AddListener(StopPlacement);
         }
 
@@ -34,7 +34,7 @@ namespace DemoDelivery.Gameplay
             inputManager.onStartTouch.RemoveListener(StartPlacement);
             inputManager.onEndTouch.RemoveListener(EndPlacement);
 
-            EventManager.onChangeExplosive.RemoveListener(ChangeSelectedExplosive);
+            //EventManager.onChangeExplosive.RemoveListener(ChangeSelectedExplosive);
             EventManager.onDestroyPlacingExplosive.AddListener(StopPlacement);
         }
 
@@ -111,7 +111,7 @@ namespace DemoDelivery.Gameplay
             }
 
             // Otherwise, we want to create a bomb
-            if (placingExplosive == null)
+            if (placingExplosive == null && LevelManager.current.CanCreateExplosive)
             {
                 placingExplosive = Instantiate(currentSelectedExplosive, position, Quaternion.identity);
                 LevelManager.current.AddExplosive(placingExplosive);
@@ -155,10 +155,10 @@ namespace DemoDelivery.Gameplay
             placingExplosive = null;
         }
 
-        public void ChangeSelectedExplosive(Explosive explosive)
-        {
-            currentSelectedExplosive = explosive;
-        }
+        //public void ChangeSelectedExplosive(Explosive explosive)
+        //{
+        //    currentSelectedExplosive = explosive;
+        //}
 
         /// <summary>
         /// Determines whether or not the explosive is over a placeable object and not on a UI element
