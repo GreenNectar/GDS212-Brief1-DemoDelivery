@@ -7,11 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuButtons : MonoBehaviour
 {
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     // when the connected button is clicked 
     public void OnClickPlay()
