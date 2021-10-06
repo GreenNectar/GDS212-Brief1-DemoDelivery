@@ -13,8 +13,6 @@ namespace DemoDelivery.Gameplay
         [SerializeField]
         private float translationSensitivity = 0.01f;
         [SerializeField]
-        private float zoomSensitivity = 0.01f;
-        [SerializeField]
         private float maximumZoom = 2f;
 
         new Camera camera;

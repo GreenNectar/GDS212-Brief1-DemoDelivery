@@ -9,9 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Jarrad/Jarrad-TestingScene.unity
-    guid: c937fdf82a01a804399c03b8a15e822e
+    path: Assets/Scenes/Jarrad/LevelSelect.unity
+    guid: 3a526b826508dca4ca408c3643d86557
   - enabled: 1
     path: Assets/Scenes/Jarrad/UI-Level.unity
     guid: 9e171fc3f55612a42a8b60bb02b79ec1
+  - enabled: 1
+    path: Assets/Scenes/Jarrad/UI-LevelComplete.unity
+    guid: 0fa7e36e394b66b4ebb2e09cb73a6361
+  - enabled: 1
+    path: Assets/Scenes/Jarrad/Jarrad-TestingScene.unity
+    guid: c937fdf82a01a804399c03b8a15e822e
   m_configObjects: {}

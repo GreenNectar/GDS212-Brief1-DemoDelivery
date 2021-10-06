@@ -121,7 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c091fdafa532e64395a8a6e05a79138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UISceneName: UI-Level
+  UIOverlaySceneName: UI-Level
+  UILevelFinishSceneName: UI-LevelComplete
   maximumExplosives: 3
 --- !u!1 &8569159409691883777
 GameObject:

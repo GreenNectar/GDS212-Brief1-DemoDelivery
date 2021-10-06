@@ -7,9 +7,9 @@ using static UnityEngine.InputSystem.InputAction;
 
 // Created by Jarrad
 
-namespace DemoDelivery.Testing
+namespace DemoDelivery.Fun
 {
-    public class Test : MonoBehaviour
+    public class ExplodeOnClick : MonoBehaviour
     {
         [SerializeField]
         private float power = 10f;
