@@ -37,17 +37,21 @@ namespace DemoDelivery.Gameplay
         [SerializeField]
         private TextMeshProUGUI explosivesRemaining;
 
+        private void Start()
+        {
+            UpdateExplosivesRemaining();
+        }
 
         private void OnEnable()
         {
             EventManager.onPlayFinish.AddListener(HideUI);
-            EventManager.onExplosivesAddedorRemoved.AddListener(ChangeExplosivesRemaining);
+            EventManager.onExplosivesAddedorRemoved.AddListener(UpdateExplosivesRemaining);
         }
 
         private void OnDisable()
         {
             EventManager.onPlayFinish.RemoveListener(HideUI);
-            EventManager.onExplosivesAddedorRemoved.RemoveListener(ChangeExplosivesRemaining);
+            EventManager.onExplosivesAddedorRemoved.RemoveListener(UpdateExplosivesRemaining);
         }
 
 
@@ -69,7 +73,7 @@ namespace DemoDelivery.Gameplay
             animator.SetBool("Show", true);
         }
 
-        private void ChangeExplosivesRemaining()
+        private void UpdateExplosivesRemaining()
         {
             explosivesRemaining.text = $"{LevelManager.current.ExplosivesUsed}/{LevelManager.current.MaximumExplosives}";
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -14,7 +15,9 @@ namespace DemoDelivery.Gameplay
     {
         [Header("Scenes")]
         [SerializeField]
-        private string UISceneName;
+        private string UIOverlaySceneName;
+        [SerializeField]
+        private string UILevelFinishSceneName;
 
         [Header("Level Values")]
         [SerializeField]
@@ -33,6 +36,7 @@ namespace DemoDelivery.Gameplay
         {
             EventManager.onDestroyAllExplosives.AddListener(DeleteAllExplosives);
             EventManager.onTogglePlay.AddListener(ResetGame);
+            EventManager.onPlayFinish.AddListener(FinishGame);
 
             InputManager.Instance.onStartTouch.AddListener(ExplodeNextBomb);
         }
@@ -41,6 +45,7 @@ namespace DemoDelivery.Gameplay
         {
             EventManager.onDestroyAllExplosives.RemoveListener(DeleteAllExplosives);
             EventManager.onTogglePlay.RemoveListener(ResetGame);
+            EventManager.onPlayFinish.RemoveListener(FinishGame);
 
             InputManager.Instance.onStartTouch.RemoveListener(ExplodeNextBomb);
         }
@@ -54,8 +59,10 @@ namespace DemoDelivery.Gameplay
         {
             ////if (SceneManager.GetSceneByName(UISceneName) == null)
             ////{
-                SceneManager.LoadScene(UISceneName, LoadSceneMode.Additive);
+                SceneManager.LoadScene(UIOverlaySceneName, LoadSceneMode.Additive);
             ////}
+
+            GameManager.Instance.SetToSetup();
 
             SetupRigidbodies();
         }
@@ -77,6 +84,11 @@ namespace DemoDelivery.Gameplay
             yield return new WaitForFixedUpdate();
             yield return new WaitForEndOfFrame();
             canExplodeBombs = true;
+        }
+
+        private void FinishGame()
+        {
+            SceneManager.LoadScene(UILevelFinishSceneName, LoadSceneMode.Additive);
         }
 
         #region Consecutive Explosions / Gameplay

@@ -8,8 +8,8 @@ namespace DemoDelivery
 {
     public class GameManager : Singleton<GameManager>
     {
-        public enum GameState { Setup, Play, End }
-        public GameState CurrentState { get; private set; } = GameState.Setup;
+        public enum GameState { Setup, Play, End, Menu }
+        public GameState CurrentState { get; private set; } = GameState.Menu;
 
         private void OnEnable()
         {
@@ -26,6 +26,8 @@ namespace DemoDelivery
         private void Start()
         {
             SetTimeScale();
+
+            Application.targetFrameRate = 60;
         }
 
         public void TogglePlayState()
@@ -41,7 +43,7 @@ namespace DemoDelivery
 
         private void SetTimeScale()
         {
-            if (CurrentState == GameState.Play)
+            if (CurrentState == GameState.Play || CurrentState == GameState.Menu)
             {
                 Time.timeScale = 1f;
             }
@@ -56,6 +58,16 @@ namespace DemoDelivery
             CurrentState = GameState.End;
 
             SetTimeScale();
+        }
+
+        public void SetToMenu()
+        {
+            CurrentState = GameState.Menu;
+        }
+
+        public void SetToSetup()
+        {
+            CurrentState = GameState.Setup;
         }
     }
 }
