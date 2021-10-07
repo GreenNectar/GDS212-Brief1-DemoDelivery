@@ -31,12 +31,10 @@ namespace DemoDelivery.Gameplay
         //    }
         //}
         private Vector3 startPosition;
-        public Vector3 newPosition; 
-        public bool movesLeft;
+        public bool inverted;
         public float speed;
-        public enum Axis { X_AXIS, Y_AXIS, Z_AXIS }
-
-        public Axis axis;
+        public float distance;
+        private float currentDistance;
 
         private void Start()
         {
@@ -45,22 +43,22 @@ namespace DemoDelivery.Gameplay
 
         private void Update()
         {
-            Vector3 moveDirection = Vector3.zero;
-            switch (this.axis)
+            if (isOpen)
             {
-                case Axis.X_AXIS:
-                    moveDirection = this.transform.right;
-                    break;
-
-                case Axis.Y_AXIS:
-                    moveDirection = this.transform.up;
-                    break;
+                currentDistance += speed * Time.deltaTime;
+            }
+            else
+            {
+                currentDistance -= speed * Time.deltaTime;
             }
 
-            if (Mathf.Abs(Vector3.Distance(startPosition, newPosition)) > speed * Time.deltaTime)
-            {
-                //this.transform.position;
-            }
+            currentDistance = Mathf.Clamp(currentDistance, 0f, distance);
+            transform.position = startPosition + transform.up * currentDistance * (inverted ? 1f : -1f );
+        }
+
+        protected override void ResetTrapdoor()
+        {
+            currentDistance = 0;
         }
     }
 }
