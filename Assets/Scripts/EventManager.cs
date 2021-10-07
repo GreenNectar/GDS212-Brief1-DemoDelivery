@@ -20,5 +20,6 @@ namespace DemoDelivery
         public static UnityEvent onExplosivesAddedorRemoved = new UnityEvent();
 
         public static UnityEvent onPlayFinish = new UnityEvent();
+        public static UnityEvent<int> onLevelComplete = new UnityEvent<int>();
     }
 }
