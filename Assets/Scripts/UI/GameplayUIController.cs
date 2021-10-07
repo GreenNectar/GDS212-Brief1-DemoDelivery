@@ -84,6 +84,7 @@ namespace DemoDelivery.Gameplay
         public void DestroyAllExplosives()
         {
             EventManager.onDestroyAllExplosives.Invoke();
+            UpdateExplosivesRemaining();
         }
 
         public void TogglePlay()
