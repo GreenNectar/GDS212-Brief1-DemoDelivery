@@ -7,23 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class MenuButtons : MonoBehaviour
 {
-
+    
     // when the connected button is clicked 
-    public void OnClickPlay()
+    public void LoadLevel(string level)
     {
+
         Debug.Log("clicked play");
-        //SceneManager.LoadScene(level select scene)
+        SceneManager.LoadScene(level);
+        
     }
 
-    public void OnClickOptions()
-    {
-        Debug.Log("options opened");
-        //SceneManager.LoadScene(options scene)
-    }
 
-    public void OnClickCredits()
-    {
-        Debug.Log("credits seen");
-        //SceneManager.loadScene(credits scene)
-    }
 }
