@@ -18,6 +18,30 @@ EditorBuildSettings:
     path: Assets/Scenes/Jarrad/UI-LevelComplete.unity
     guid: 0fa7e36e394b66b4ebb2e09cb73a6361
   - enabled: 1
-    path: Assets/Scenes/Jarrad/Jarrad-TestingScene.unity
-    guid: c937fdf82a01a804399c03b8a15e822e
+    path: Assets/Scenes/Mike/Tutorial.unity
+    guid: 36d998949149e1d45a16ff922c6990e6
+  - enabled: 1
+    path: Assets/Scenes/Mike/Level 1.unity
+    guid: 9e8610e918a9c4040866d9238728309c
+  - enabled: 1
+    path: Assets/Scenes/Mike/Level 2.unity
+    guid: dba9c5e7169a8da42be265a5b7281ac9
+  - enabled: 1
+    path: Assets/Scenes/Mike/Level 3.unity
+    guid: ee6b1f0b0593568478b8d8eafc059cd8
+  - enabled: 1
+    path: Assets/Scenes/Mike/Level 5.unity
+    guid: bed9f14ffa3318b428614eb24ce3de94
+  - enabled: 1
+    path: Assets/Scenes/Mike/Level 7.unity
+    guid: e2bc5a3ab4fe4de4eb77614ae2faa797
+  - enabled: 1
+    path: Assets/Scenes/Mike/Level 8.unity
+    guid: 6915cab4530337e4f945075985392f70
+  - enabled: 1
+    path: Assets/Scenes/Mike/Level 4.unity
+    guid: 20d8c39f3f5b6a94b8f78b7bbcc0158c
+  - enabled: 1
+    path: Assets/Scenes/Mike/Level 9.unity
+    guid: b7e2f703ceccc034797a32c63252532e
   m_configObjects: {}

@@ -309,5 +309,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320bd6bf22ddd0d4487c0af5eb212654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 391016277854012605}
+  parent: {fileID: 391016277315949346}
   doorNumber: 0
