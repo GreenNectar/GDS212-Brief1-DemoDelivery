@@ -8,48 +8,30 @@ namespace DemoDelivery.Gameplay
 {
     public class TrapDoorSliding : TrapDoor
     {
-        //private float startRotation;
-        //public float rotation;
-        //public bool turnsLeft;
-        //public float speed;
-
-        //private void Start()
-        //{
-        //    startRotation = transform.eulerAngles.z;
-        //}
-
-        //private void Update()
-        //{
-        //    float wantedRotation = isOpen ? startRotation + rotation : startRotation;
-        //    if (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, wantedRotation)) > speed * Time.deltaTime)
-        //    {
-        //        transform.rotation = Quaternion.Euler(0, 0, transform.eulerAngles.z + ((isOpen ? 1f : -1f) * (turnsLeft ? 1f : -1f) * speed * Time.deltaTime));
-        //    }
-        //    else
-        //    {
-        //        transform.rotation = Quaternion.Euler(0, 0, wantedRotation);
-        //    }
-        //}
         private Vector3 startPosition;
         public bool inverted;
         public float speed;
         public float distance;
+        public bool startsOpen;
+
+
         private float currentDistance;
 
         private void Start()
         {
             startPosition = transform.position;
+            ResetTrapdoor();
         }
 
         private void Update()
         {
             if (isOpen)
             {
-                currentDistance += speed * Time.deltaTime;
+                currentDistance += speed * Time.deltaTime * (startsOpen ? -1f : 1f);
             }
             else
             {
-                currentDistance -= speed * Time.deltaTime;
+                currentDistance -= speed * Time.deltaTime * (startsOpen ? -1f : 1f);
             }
 
             currentDistance = Mathf.Clamp(currentDistance, 0f, distance);
@@ -58,7 +40,7 @@ namespace DemoDelivery.Gameplay
 
         protected override void ResetTrapdoor()
         {
-            currentDistance = 0;
+            currentDistance = startsOpen ? distance : 0;
         }
     }
 }

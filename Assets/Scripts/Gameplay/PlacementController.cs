@@ -167,7 +167,7 @@ namespace DemoDelivery.Gameplay
         {
             Ray ray = Camera.main.ScreenPointToRay(inputManager.GetScreenPosition());
             return
-                Physics2D.GetRayIntersection(ray, float.PositiveInfinity, ~LayerMask.GetMask("Player", "Background", "Bomb")) &&
+                Physics2D.GetRayIntersection(ray, float.PositiveInfinity, LayerMask.GetMask("Map")) &&
                 !IsPointerOverUIObject();
         }
 

@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 37331692}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 141674638}
   - component: {fileID: 141674637}
   - component: {fileID: 141674636}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CliffCave (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,7 +536,7 @@ GameObject:
   - component: {fileID: 590559951}
   - component: {fileID: 590559950}
   - component: {fileID: 590559953}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CliffCave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1046,7 +1046,7 @@ GameObject:
   - component: {fileID: 1731839463}
   - component: {fileID: 1731839462}
   - component: {fileID: 1731839465}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FloatingIsland
   m_TagString: Untagged
   m_Icon: {fileID: 0}

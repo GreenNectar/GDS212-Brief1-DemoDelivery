@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 37331692}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ Transform:
   - {fileID: 1731839464}
   - {fileID: 905801660}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &301591738
 PrefabInstance:
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 590559951}
   - component: {fileID: 590559950}
   - component: {fileID: 590559953}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CliffCave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -612,7 +612,7 @@ Transform:
   m_Children:
   - {fileID: 1933640459}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &898999829
 PrefabInstance:
@@ -955,7 +955,7 @@ GameObject:
   - component: {fileID: 1731839463}
   - component: {fileID: 1731839462}
   - component: {fileID: 1731839465}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FloatingIsland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
