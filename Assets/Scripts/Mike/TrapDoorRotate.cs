@@ -37,5 +37,10 @@ namespace DemoDelivery.Gameplay
                 transform.rotation = Quaternion.Euler(0, 0, wantedRotation);
             }
         }
+
+        protected override void ResetTrapdoor()
+        {
+            transform.rotation = Quaternion.Euler(0, 0, startRotation);
+        }
     }
 }

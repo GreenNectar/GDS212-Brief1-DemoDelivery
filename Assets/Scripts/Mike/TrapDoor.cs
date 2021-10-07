@@ -16,12 +16,16 @@ namespace DemoDelivery.Gameplay
         {
             EventManager.onButtonPress.RemoveListener(OpenTrapDoor);
             EventManager.onButtonRelease.RemoveListener(CloseTrapDoor);
+
+            EventManager.onTogglePlay.RemoveListener(ResetTrapdoor);
         }
 
         private void OnEnable()
         {
             EventManager.onButtonPress.AddListener(OpenTrapDoor);
             EventManager.onButtonRelease.AddListener(CloseTrapDoor);
+
+            EventManager.onTogglePlay.AddListener(ResetTrapdoor);
         }
 
 
@@ -39,6 +43,11 @@ namespace DemoDelivery.Gameplay
             {
                 isOpen = false;
             }
+        }
+
+        protected virtual void ResetTrapdoor()
+        {
+
         }
     }
 }
