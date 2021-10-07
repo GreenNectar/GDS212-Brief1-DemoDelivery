@@ -14,7 +14,7 @@ namespace DemoDelivery.LevelSelect
 
         private void Start()
         {
-            //SetAsPersistent();
+            SetAsPersistent();
             //ResetLevels();
         }
 
