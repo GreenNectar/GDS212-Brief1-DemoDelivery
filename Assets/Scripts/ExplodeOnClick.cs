@@ -5,9 +5,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
-namespace DemoDelivery.Testing
+// Created by Jarrad
+
+namespace DemoDelivery.Fun
 {
-    public class Test : MonoBehaviour
+    public class ExplodeOnClick : MonoBehaviour
     {
         [SerializeField]
         private float power = 10f;
@@ -16,21 +18,25 @@ namespace DemoDelivery.Testing
         [SerializeField]
         private float radius = 2f;
 
-        private int currentTap = 0;
-
         InputManager inputManager;
 
         private void OnEnable()
         {
-            inputManager = InputManager.Instance;
             inputManager.onStartTouch.AddListener(Explode);
+        }
+
+        private void OnDisable()
+        {
+            inputManager.onStartTouch.RemoveListener(Explode);
+        }
+
+        private void Awake()
+        {
+            inputManager = InputManager.Instance;
         }
 
         public void Explode(Vector2 position)
         {
-            currentTap++;
-            Debug.Log($"Taps {currentTap}");
-
             Explosion.Explode(position, radius, power, torquePower);
         }
     }

@@ -10,7 +10,7 @@ namespace DemoDelivery
         public static void Explode(Vector3 position, float radius, float power, float torquePower = 0f, ForceMode2D forceMode = ForceMode2D.Impulse)
         {
             // Get all colliders in the explosion radius
-            Collider2D[] objectsToMove = Physics2D.OverlapCircleAll(position, radius);
+            Collider2D[] objectsToMove = Physics2D.OverlapCircleAll(position, radius, ~LayerMask.GetMask("IgnoreExplosions", "Background"));
 
             // Get all the attached rigidbodies
             IEnumerable<Rigidbody2D> rigidBodies = objectsToMove.Where(o => o.attachedRigidbody != null).Select(o => o.attachedRigidbody);
