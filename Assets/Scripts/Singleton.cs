@@ -41,7 +41,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
         if (singletons.Length == 0)
             instance = new GameObject($"{typeof(T).Name}-Singleton").AddComponent<T>();
         // If there is one, make the instance to the first one
-        if (singletons.Length > 0)
+        if (singletons.Length > 0 && instance == null)
             instance = singletons[0];
         // Destroy any singleton that is not set as the instance of this singleton
         if (singletons.Length > 1)
