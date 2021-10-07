@@ -31,9 +31,12 @@ namespace DemoDelivery.Gameplay
         //    }
         //}
         private Vector3 startPosition;
-        public Vector3 newPosition;
+        public Vector3 newPosition; 
         public bool movesLeft;
         public float speed;
+        public enum Axis { X_AXIS, Y_AXIS, Z_AXIS }
+
+        public Axis axis;
 
         private void Start()
         {
@@ -42,10 +45,21 @@ namespace DemoDelivery.Gameplay
 
         private void Update()
         {
+            Vector3 moveDirection = Vector3.zero;
+            switch (this.axis)
+            {
+                case Axis.X_AXIS:
+                    moveDirection = this.transform.right;
+                    break;
+
+                case Axis.Y_AXIS:
+                    moveDirection = this.transform.up;
+                    break;
+            }
 
             if (Mathf.Abs(Vector3.Distance(startPosition, newPosition)) > speed * Time.deltaTime)
             {
-
+                //this.transform.position;
             }
         }
     }
