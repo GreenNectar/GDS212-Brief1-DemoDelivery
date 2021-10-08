@@ -30,6 +30,8 @@ namespace DemoDelivery.Gameplay
         private UnityEngine.UI.Button trashButton;
         [SerializeField]
         private UnityEngine.UI.Button optionsButton;
+        [SerializeField]
+        private UnityEngine.UI.Button undoButton;
 
         [Header("Bomb Stuff")]
         [SerializeField]
@@ -40,18 +42,21 @@ namespace DemoDelivery.Gameplay
         private void Start()
         {
             UpdateExplosivesRemaining();
+            UpdateUndoButton();
         }
 
         private void OnEnable()
         {
             EventManager.onPlayFinish.AddListener(HideUI);
             EventManager.onExplosivesAddedorRemoved.AddListener(UpdateExplosivesRemaining);
+            EventManager.onUndoUpdated.AddListener(UpdateUndoButton);
         }
 
         private void OnDisable()
         {
             EventManager.onPlayFinish.RemoveListener(HideUI);
             EventManager.onExplosivesAddedorRemoved.RemoveListener(UpdateExplosivesRemaining);
+            EventManager.onUndoUpdated.RemoveListener(UpdateUndoButton);
         }
 
 
@@ -60,6 +65,7 @@ namespace DemoDelivery.Gameplay
             playButton.interactable = false;
             trashButton.interactable = false;
             optionsButton.interactable = false;
+            undoButton.interactable = false;
 
             animator.SetBool("Show", false);
         }
@@ -69,6 +75,7 @@ namespace DemoDelivery.Gameplay
             playButton.interactable = true;
             trashButton.interactable = true;
             optionsButton.interactable = true;
+            undoButton.interactable = true;
 
             animator.SetBool("Show", true);
         }
@@ -96,6 +103,25 @@ namespace DemoDelivery.Gameplay
                 playButtonImage.sprite = GameManager.Instance.CurrentState == GameManager.GameState.Play ? stopSprite : playSprite;
 
                 trashButton.interactable = GameManager.Instance.CurrentState == GameManager.GameState.Setup;
+            }
+
+            UpdateUndoButton();
+        }
+
+        public void Undo()
+        {
+            EventManager.onUndo.Invoke();
+        }
+
+        private void UpdateUndoButton()
+        {
+            if (GameManager.Instance.CurrentState == GameManager.GameState.Setup && LevelManager.current.CanUndo)
+            {
+                undoButton.interactable = true;
+            }
+            else
+            {
+                undoButton.interactable = false;
             }
         }
     }

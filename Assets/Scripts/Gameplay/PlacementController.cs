@@ -135,6 +135,7 @@ namespace DemoDelivery.Gameplay
                 if (CanPlace())
                 {
                     placingExplosive.transform.position = position + selectionOffset;
+                    EventManager.onPlaceExplosive.Invoke();
                 }
                 else
                 {
@@ -143,6 +144,8 @@ namespace DemoDelivery.Gameplay
                 }
                 placingExplosive = null;
             }
+
+            
         }
 
         /// <summary>
@@ -153,6 +156,7 @@ namespace DemoDelivery.Gameplay
             LevelManager.current.RemoveExplosive(placingExplosive);
             Destroy(placingExplosive.gameObject);
             placingExplosive = null;
+            //EventManager.onStopPlacing.Invoke();
         }
 
         //public void ChangeSelectedExplosive(Explosive explosive)

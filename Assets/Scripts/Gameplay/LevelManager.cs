@@ -13,6 +13,10 @@ namespace DemoDelivery.Gameplay
 {
     public class LevelManager : MonoBehaviour
     {
+        [Header("Stuff")]
+        [SerializeField]
+        private PlacementController placementController;
+
         [Header("Scenes")]
         [SerializeField]
         private string UIOverlaySceneName;
@@ -32,11 +36,16 @@ namespace DemoDelivery.Gameplay
         public int ExplosivesUsed => explosives.Count;
         public int MaximumExplosives => maximumExplosives;
 
+        List<Vector3[]> previousBombPositions = new List<Vector3[]>();
+
         private void OnEnable()
         {
             EventManager.onDestroyAllExplosives.AddListener(DeleteAllExplosives);
             EventManager.onTogglePlay.AddListener(ResetGame);
             EventManager.onPlayFinish.AddListener(FinishGame);
+            //EventManager.onPlaceExplosive.AddListener(AddToUndo);
+            //EventManager.onUndo.AddListener(Undo);
+            //EventManager.onDestroyAllExplosives.AddListener(Undo);
 
             InputManager.Instance.onStartTouch.AddListener(ExplodeNextBomb);
         }
@@ -46,6 +55,9 @@ namespace DemoDelivery.Gameplay
             EventManager.onDestroyAllExplosives.RemoveListener(DeleteAllExplosives);
             EventManager.onTogglePlay.RemoveListener(ResetGame);
             EventManager.onPlayFinish.RemoveListener(FinishGame);
+            //EventManager.onPlaceExplosive.RemoveListener(AddToUndo);
+            //EventManager.onUndo.RemoveListener(Undo);
+            //EventManager.onDestroyAllExplosives.RemoveListener(Undo);
 
             InputManager.Instance.onStartTouch.RemoveListener(ExplodeNextBomb);
         }
@@ -154,6 +166,74 @@ namespace DemoDelivery.Gameplay
                     Destroy(explosives[i].gameObject);
                 }
                 explosives.Clear();
+            }
+        }
+
+        #endregion
+
+        #region Undo
+
+        bool isFirstUndo = false;
+        private void AddToUndo()
+        {
+            Vector3[] positions = explosives.Select(e => e.transform.position).ToArray();
+
+            if (!previousBombPositions.Contains(positions))
+            {
+                isFirstUndo = true;
+
+                // Add bombs and limit the amount stored
+                previousBombPositions.Add(positions);
+
+                if (previousBombPositions.Count > 5)
+                {
+                    previousBombPositions.RemoveAt(0);
+                }
+
+                EventManager.onUndoUpdated.Invoke();
+            }
+        }
+
+        private void Undo()
+        {
+            if (!CanUndo) return;
+            if (!isFirstUndo && previousBombPositions.Count == 0) return;
+
+            for (int i = 0; i < explosives.Count; i++)
+            {
+                Destroy(explosives[i].gameObject);
+            }
+
+            explosives.Clear();
+
+            if (previousBombPositions.Count > 1)
+            {
+                if (isFirstUndo)
+                {
+                    isFirstUndo = false;
+                    previousBombPositions.Remove(previousBombPositions.Last());
+                }
+
+                // 'Pop' from list
+                Vector3[] previousPositions = previousBombPositions.Last();
+                previousBombPositions.Remove(previousPositions);
+
+                // Add all the ones from the previous back
+                for (int i = 0; i < previousPositions.Length; i++)
+                {
+                    AddExplosive(Instantiate(placementController.currentSelectedExplosive, previousPositions[i], Quaternion.identity));
+                }
+            }
+
+            EventManager.onUndoUpdated.Invoke();
+            EventManager.onExplosivesAddedorRemoved.Invoke();
+        }
+
+        public bool CanUndo
+        {
+            get
+            {
+                return previousBombPositions.Count > 0;
             }
         }
 

@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c091fdafa532e64395a8a6e05a79138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placementController: {fileID: 8569159408216878152}
   UIOverlaySceneName: UI-Level
   UILevelFinishSceneName: UI-LevelComplete
   maximumExplosives: 3
