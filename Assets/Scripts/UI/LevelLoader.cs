@@ -21,10 +21,5 @@ namespace DemoDelivery.UI
         {
             SceneManager.LoadScene(levelName);
         }
-
-        public void LoadLevel(string levelName)
-        {
-            SceneManager.LoadScene(levelName);
-        }
     }
 }

@@ -489,7 +489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4410037551806998617, guid: 9b3024a72b7084d4abf5a0ad3963293f, type: 3}
       propertyPath: turnsLeft
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4410037551806998617, guid: 9b3024a72b7084d4abf5a0ad3963293f, type: 3}
       propertyPath: doorNumber
@@ -1269,7 +1269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8569159409392344669, guid: 9e8c85a706199104ca93dc8e9c43e0a6, type: 3}
       propertyPath: maximumExplosives
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e8c85a706199104ca93dc8e9c43e0a6, type: 3}

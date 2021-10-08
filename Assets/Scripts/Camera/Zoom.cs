@@ -79,6 +79,9 @@ namespace DemoDelivery.Gameplay
                     // Scale (the best I could get it :/)
                     float distance = Vector2.Distance(currentTouchFirst, currentTouchSecond);
 
+                    // Fixing a bug
+                    if (distance == 0) return;
+
                     // Change the starting touch distance so we can scale down instantly after we go way past the zoom level
                     float clampedDistance = Mathf.Clamp(distance, startingTouchDistance / maximumZoom, startingTouchDistance * maximumZoom);
                     float sizeDifference = distance - clampedDistance;
