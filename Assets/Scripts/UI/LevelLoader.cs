@@ -16,5 +16,10 @@ namespace DemoDelivery.UI
         {
             SceneManager.LoadScene(levelNumber + startingIndex);
         }
+
+        public void LoadLevel(string levelName)
+        {
+            SceneManager.LoadScene(levelName);
+        }
     }
 }

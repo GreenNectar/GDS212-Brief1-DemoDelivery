@@ -25,6 +25,12 @@ namespace DemoDelivery.Gameplay
         [Header("Images")]
         [SerializeField]
         private SpriteRenderer bomb;
+        [SerializeField]
+        private SpriteRenderer explosionRadius;
+
+        [Header("Particle Effects")]
+        [SerializeField]
+        private ParticleSystem explosionEffects;
 
         public void SetBombNumber(int bombNumber)
         {
@@ -36,6 +42,9 @@ namespace DemoDelivery.Gameplay
             bombNumber.enabled = false;
             bomb.enabled = false;
 
+            explosionEffects.gameObject.SetActive(true);
+            explosionEffects.Play();
+
             Explosion.Explode(transform.position, radius, power, torque);
         }
 
@@ -43,6 +52,13 @@ namespace DemoDelivery.Gameplay
         {
             bombNumber.enabled = true;
             bomb.enabled = true;
+
+            explosionEffects.gameObject.SetActive(false);
+        }
+
+        public void ShowRadius(bool show)
+        {
+            explosionRadius.enabled = show;
         }
     }
 }

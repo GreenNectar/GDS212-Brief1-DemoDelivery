@@ -1826,7 +1826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673efd839fa4df14081c155e652b74a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  homeScene: LevelSelect
+  homeScene: MainMenu
   nextButton: {fileID: 199518870}
   animator: {fileID: 35019770}
 --- !u!4 &1533988951

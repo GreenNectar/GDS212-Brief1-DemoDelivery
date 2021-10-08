@@ -60,6 +60,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Jarrad/Level 13.unity
     guid: db6dfd7d0ed82c643943940e87512e8e
   - enabled: 1
+    path: Assets/Scenes/Jarrad/Level 17.unity
+    guid: a6c94c634a0576d418e1e9195d6c2947
+  - enabled: 1
     path: Assets/Scenes/Jarrad/Level 14.unity
     guid: 5b30c60f9953e344e9a7ecfe3dc1150f
   - enabled: 1

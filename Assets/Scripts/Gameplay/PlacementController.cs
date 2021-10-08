@@ -117,11 +117,16 @@ namespace DemoDelivery.Gameplay
                 LevelManager.current.AddExplosive(placingExplosive);
             }
 
-            // Store the explosives material, this is so we can switch between the overlay and the original
-            initialMaterial = placingExplosive.GetComponent<SpriteRenderer>().material;
+            if (placingExplosive != null)
+            {
+                placingExplosive.ShowRadius(true);
 
-            // Allows us to grab the object at any point without it snapping to the pointer position
-            selectionOffset = (Vector2)placingExplosive.transform.position - position;
+                // Store the explosives material, this is so we can switch between the overlay and the original
+                initialMaterial = placingExplosive.GetComponent<SpriteRenderer>().material;
+
+                // Allows us to grab the object at any point without it snapping to the pointer position
+                selectionOffset = (Vector2)placingExplosive.transform.position - position;
+            }
         }
 
         /// <summary>
@@ -132,6 +137,8 @@ namespace DemoDelivery.Gameplay
         {
             if (placingExplosive)
             {
+                placingExplosive.ShowRadius(false);
+
                 if (CanPlace())
                 {
                     placingExplosive.transform.position = position + selectionOffset;
@@ -144,8 +151,6 @@ namespace DemoDelivery.Gameplay
                 }
                 placingExplosive = null;
             }
-
-            
         }
 
         /// <summary>
