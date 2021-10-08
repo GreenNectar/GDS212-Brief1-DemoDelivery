@@ -209,10 +209,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1564279220}
+  - {fileID: 1403720347}
   - {fileID: 335489478}
   - {fileID: 1453729521}
   - {fileID: 1519795918}
-  - {fileID: 1403720347}
   m_Father: {fileID: 35019769}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -517,6 +517,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5841799523207340321, guid: 3bb24e361400e0e408e3685f7567d4b6, type: 3}
   m_PrefabInstance: {fileID: 199518868}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &199518870 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5841799523207340320, guid: 3bb24e361400e0e408e3685f7567d4b6, type: 3}
+  m_PrefabInstance: {fileID: 199518868}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &335489477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1239,7 +1250,7 @@ RectTransform:
   - {fileID: 1695650258}
   - {fileID: 199518869}
   m_Father: {fileID: 49061778}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -1816,7 +1827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   homeScene: LevelSelect
-  nextButton: {fileID: 0}
+  nextButton: {fileID: 199518870}
   animator: {fileID: 35019770}
 --- !u!4 &1533988951
 Transform:

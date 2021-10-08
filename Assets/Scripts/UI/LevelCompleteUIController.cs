@@ -22,10 +22,20 @@ namespace DemoDelivery.UI
         private float timeToWait = 0.5f;
         private bool hasPressedButton;
 
-        private void Awake()
+        //private void Awake()
+        //{
+        //    // If the next level doesn't exist, disable the button
+        //    if (SceneManager.GetActiveScene().buildIndex + 1 > SceneManager.sceneCountInBuildSettings)
+        //    {
+        //        //nextButton.interactable = false;
+        //        nextButton.gameObject.SetActive(false);
+        //    }
+        //}
+
+        private void Start()
         {
             // If the next level doesn't exist, disable the button
-            if (SceneManager.GetActiveScene().buildIndex + 1 > SceneManager.sceneCount)
+            if (SceneManager.GetActiveScene().buildIndex + 1 > SceneManager.sceneCountInBuildSettings - 1) // Build index starts at 0, whereas the count starts at 1, and we want the next one after this one, so + 1 for index and -1 for the count
             {
                 //nextButton.interactable = false;
                 nextButton.gameObject.SetActive(false);

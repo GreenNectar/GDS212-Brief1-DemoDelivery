@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Created by Jarrad
 
@@ -12,6 +13,7 @@ namespace DemoDelivery.Gameplay {
             if (collision.CompareTag("Player"))
             {
                 EventManager.onPlayFinish.Invoke();
+                EventManager.onLevelComplete.Invoke(SceneManager.GetActiveScene().buildIndex);
             }
         }
     }
