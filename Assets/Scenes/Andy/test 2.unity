@@ -180,11 +180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4410037551806998617, guid: 9b3024a72b7084d4abf5a0ad3963293f, type: 3}
       propertyPath: rotation
-      value: -90
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4410037551806998617, guid: 9b3024a72b7084d4abf5a0ad3963293f, type: 3}
       propertyPath: turnsLeft
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4410037551806998617, guid: 9b3024a72b7084d4abf5a0ad3963293f, type: 3}
       propertyPath: doorNumber
@@ -193,6 +193,14 @@ PrefabInstance:
     - target: {fileID: 4410037551806998622, guid: 9b3024a72b7084d4abf5a0ad3963293f, type: 3}
       propertyPath: m_Name
       value: SteelTrapdoor-Rotator
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410037551806998622, guid: 9b3024a72b7084d4abf5a0ad3963293f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410037552282882052, guid: 9b3024a72b7084d4abf5a0ad3963293f, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b3024a72b7084d4abf5a0ad3963293f, type: 3}
@@ -1929,6 +1937,14 @@ PrefabInstance:
     - target: {fileID: 4410037551806998622, guid: 9b3024a72b7084d4abf5a0ad3963293f, type: 3}
       propertyPath: m_Name
       value: SteelTrapdoor-Rotator (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410037551806998622, guid: 9b3024a72b7084d4abf5a0ad3963293f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410037552282882052, guid: 9b3024a72b7084d4abf5a0ad3963293f, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b3024a72b7084d4abf5a0ad3963293f, type: 3}

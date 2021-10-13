@@ -17,7 +17,11 @@ namespace DemoDelivery.Input
 {
     public class InputManager : Singleton<InputManager>
     {
+#if UNITY_WEBGL
+        private TouchControlsWebgl touchControls;
+#else
         private TouchControls touchControls;
+#endif
 
         public UnityEvent<Vector2> onStartTouch;
         public UnityEvent<Vector2> onEndTouch;
@@ -26,7 +30,12 @@ namespace DemoDelivery.Input
 
         private void Awake()
         {
+
+#if UNITY_WEBGL
+            touchControls = new TouchControlsWebgl();
+#else
             touchControls = new TouchControls();
+#endif
 
             EnhancedTouchSupport.Enable();
         }
